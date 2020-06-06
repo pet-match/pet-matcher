@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// const templateRouters = require('./routes/template');
+const dbRouters = require('./routes/db');
 
 // for incoming JSON data
 app.use(express.json());
@@ -24,8 +24,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// for future routes
-// app.use(<routeStartingName, <someRoutersRequiredLine7);
+app.use('/api', dbRouters);
 
 // global error handler
 app.use((err, req, res, next) => {
