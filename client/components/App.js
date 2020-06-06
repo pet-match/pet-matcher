@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import styles from '../../styles.css';
+import { Switch, Route } from 'react-router-dom';
+
+import SignIn from './SignIn';
 
 const App = () => {
-  return <div>Pets</div>
-}
+  return (
+    <Switch>
+      <Route exact path={'/signin'} component={SignIn} />
+    </Switch>
+  );
+};
 
 export default App;
