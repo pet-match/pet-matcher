@@ -8,9 +8,9 @@ import Main from '../pages/Main';
 const App = (props) => {
   return (
     <Switch>
-      <Route exact path={'/'} component={Main} />
+      <Route exact path={'/'} component={SignIn} />
+      <Route exact path={'/main'} component={Main} />
       {/* <Route exact path={'/signin'} component={SignIn} /> */}
-      {/* <Route exact path={'/main'} component={Main} /> */}
     </Switch>
   );
 };
