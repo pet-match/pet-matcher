@@ -6,7 +6,7 @@ import SignIn from './SignIn';
 const App = () => {
   return (
     <Switch>
-      <Route exact path={'/signin'} component={SignIn} />
+      <Route exact path={'/'} component={SignIn} />
     </Switch>
   );
 };
