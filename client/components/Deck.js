@@ -18,7 +18,7 @@ class Deck extends Component {
     const cards = [];
     for (let i = 0; i < this.state.userCount.length; i++) {
       cards.push(<Card key={i} id={i} />);
-      console.log(cards);
+      // console.log(cards);
     }
     return <div>{cards}</div>;
   }

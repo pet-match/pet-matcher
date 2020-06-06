@@ -5,5 +5,25 @@
 }
 
 body {
-  background-color: orange;
+  background-color: rgb(255, 94, 82);
+}
+
+.signinButton {
+  color: #efefef;
+  border: 1px solid rgb(195, 195, 195);
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: block;
+  text-align: center;
+  padding: 0.5rem 3rem;
+  border-radius: 4px;
+  margin-bottom: 5px 0;
+  margin: 5px 0;
+  text-decoration: none;
+  background-color: rgb(255, 94, 82);
+}
+
+.signinButton:hover {
+  border: 1px solid rgb(118, 118, 118);
 }
