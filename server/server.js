@@ -4,6 +4,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// const templateRouters = require('./routes/template');
+
 // for incoming JSON data
 app.use(express.json());
 // for incoming form data (if necessary)
@@ -21,6 +23,9 @@ if (process.env.NODE_ENV === 'production') {
     return res.sendFile(path.join(__dirname, '../index.html'));
   });
 }
+
+// for future routes
+// app.use(<routeStartingName, <someRoutersRequiredLine7);
 
 // global error handler
 app.use((err, req, res, next) => {
