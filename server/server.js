@@ -13,6 +13,16 @@ app.use(
   })
 );
 
+// should only run if in 'production' mode.
+// if in 'development', dev-server will run the index.html file on '/'
+if (process.env.NODE_ENV === 'production') {
+  app.use('/build', express.static(path.join(__dirname, '../build')));
+  app.get('/', (req, res) => {
+    return res.sendFile(path.join(__dirname, '../index.html'));
+  });
+}
+
+// global error handler
 app.use((err, req, res, next) => {
   const errorMessage = err.message || 'Unknown middleware error';
   const errorStatus = err.status || 500;
