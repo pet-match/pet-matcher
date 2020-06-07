@@ -9,8 +9,8 @@ const router = express.Router();
 //   return res.status(200).end();
 // });
 
-router.get('/getProspects', dbController.getAllAvailableProspects, (req, res) => {
-  return res.status(200).send("Hey Bro we got prospects for you!");
+router.get('/getProspects/:user_Id', dbController.getAllAvailableProspects, (req, res) => {
+  return res.status(200).json(res.locals.getProspects);
 })
 
 module.exports = router;

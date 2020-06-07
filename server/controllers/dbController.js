@@ -11,11 +11,12 @@ dbController.getAllAvailableProspects = (req, res, next) => {
 
   // Get ALL users (who have pets) besides user $1, + their pets 
   const text = 'SELECT * FROM users INNER JOIN pets ON user_id = owner_id WHERE user_id != $1;'
-  const values = [req.params];
-  // console.log(req.params)
-  db.query(text, values)
+  const values = [req.params.user_Id];
+  //  console.log('does this contain anything---->',req.params)
+  db.query(text,values)
     .then(result => {
       console.log("Got results from database:", result.rows);
+      res.locals.getProspects=result.rows
       return next();
     })
     .catch(err => {
