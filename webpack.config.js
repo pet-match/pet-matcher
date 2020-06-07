@@ -29,14 +29,12 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-				test: /\.(png|svg|jpg|gif)$/,
+				test: /\.(png|svg|gif)$/,
 				use: [ 'file-loader', ],
       },
       {
         test: /\.jpg?/,
-        use: [
-          'file-loader',
-          {
+        use: [ 'file-loader', {
             loader: 'image-webpack-loader',
             options: {
               disable: true,
