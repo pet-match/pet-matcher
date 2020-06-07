@@ -2,17 +2,18 @@
 const db = require('../models/dbPool.js');
 const dbController = {};
 
-dbController.verifyLogin = (req, res, next) => {
-  console.log('login function here');
-  return next();
-};
+// dbController.verifyLogin = (req, res, next) => {
+//   console.log('login function here');
+//   return next();
+// };
 
-dbController.getAllAvailableMatches = (req, res, next) => {
+dbController.getAllAvailableProspects = (req, res, next) => {
 
-  const text = 'SELECT * FROM users INNER JOIN pets ON user_id = owner_id WHERE user_id = 1;';
-  // const values = [req.body.user_id];
-
-  db.query(text)
+  // Get ALL users (who have pets) besides user $1, + their pets 
+  const text = 'SELECT * FROM users INNER JOIN pets ON user_id = owner_id WHERE user_id != $1;'
+  const values = [req.params];
+  // console.log(req.params)
+  db.query(text, values)
     .then(result => {
       console.log("Got results from database:", result.rows);
       return next();
@@ -22,6 +23,28 @@ dbController.getAllAvailableMatches = (req, res, next) => {
       return next(err);
     });
 }
+
+// Get user $1 along with all of their pets 
+// SELECT * FROM users 
+// INNER JOIN pets
+// ON user_id = owner_id
+// WHERE user_id = $1
+
+// Get all prospects who user $1 likes
+// SELECT * FROM users  
+// JOIN likes
+// ON user_id = liker_id
+// WHERE user_id = 1
+
+// Get matching likes, INCOMPLETE...
+// SELECT users.*, users AS  FROM users uA userA
+// JOIN likes
+// ON user_id = liker_id
+// JOIN users
+// ON likee_id = user_id
+// WHERE user_id = 1
+
+
 
 module.exports = dbController;
 
