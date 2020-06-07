@@ -1,29 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useContext } from 'react';
 import Card from './Card';
+import { AppContext } from '../components/AppContext';
 
-class Deck extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // username : {}
-      userCount: [1, 2, 3, 4, 5],
-    };
-
-    // handleLike()
-    // handleDelete()
-    //
+export default function Deck() {
+  const [state, setState] = useContext(AppContext);
+  const handleClick = () =>
+    console.log('Current State isLogged in: ', state.isLoggedIn);
+  const cards = [];
+  for (let i = 0; i < 4; i++) {
+    cards.push(<Card key={i} id={i} />);
+    // console.log(cards);
   }
-
-  render() {
-    const cards = [];
-    for (let i = 0; i < this.state.userCount.length; i++) {
-      cards.push(<Card key={i} id={i} />);
-      // console.log(cards);
-    }
-    return <div>{cards}</div>;
-  }
+  return <div onClick={handleClick}>{cards}</div>;
 }
-
-export default Deck;
 
 // username, age, desc, photo
