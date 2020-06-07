@@ -9,4 +9,8 @@ router.get('/', dbController.verifyLogin, (req, res) => {
   return res.status(200).end();
 });
 
+router.get('/getProspects', dbController.getAllAvailableMatches, (req, res) => {
+  return res.status(200).send("Hey Bro we got prospects for you!");
+})
+
 module.exports = router;
