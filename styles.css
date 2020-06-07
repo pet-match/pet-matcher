@@ -7,6 +7,7 @@
 body {
   background-image: url("/../client/img/ws_Green_Garden.jpg");
   background-size: cover;
+  background-attachment: fixed;
   height: 110vh;
   background-color: green;
 }
@@ -28,18 +29,26 @@ body {
 }
 
 .deck {
+  margin-top: 3em;
+  /* position: absolute; */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); */
+  /* grid-template-columns: repeat(auto-fill, 4fr); */
+  /* grid-gap: 1rem; */
 }
 
 .card {
-  /* background-image: url("/../ws_Green_Garden.jpg"); */
+  margin: 0.6em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: rgb(90.2%, 89.7%, 89.7%);
-  margin: 2em;
-  /* border: 1px solid grey; */
-  border-radius: 2em;
-  height: 26em;
-  padding-bottom: 2em;
+  /* max-width: 45vh; */
+  /* max-height: 570px; */
+  height: 1fr;
+  /* will-change: transform; */
+  border-radius: 10px;
+  box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
 }
 
 .signinButton:hover {
@@ -47,15 +56,57 @@ body {
 }
 
 .cardPetPic {
-  margin-top: 2em;
+  margin-top: 10px;
   /* margin: 2em 0.5em; */
   /* padding: 1em; */
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 
 .cardDetails {
+  margin-top: 3px;;
   list-style: none;
   font-family: 'Roboto', sans-serif;
+  font-size: larger;
   
+}
+
+/*
+  MEDIA QUERIES
+  0 - 600px - Mobile phones
+  600 - 900px - Tablet portrait
+  900 - 1200px - Tablet landscape
+  1200 - 1800px - Desktop - normal styles
+  1800px + Large desktop
+*/
+/* Mobile */
+@media screen and (max-width: 600px) {
+  .deck {
+    grid-template-columns: repeat(1, 1fr);
+  }
+/* 
+  .charCard .charPhoto {
+    justify-content: flex-start;
+  } */
+}
+
+/* Tablet */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .deck {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Normal */
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .deck {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Lg Screen */
+@media screen and (min-width: 1201px) {
+  .deck {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
