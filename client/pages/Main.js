@@ -7,8 +7,8 @@ export default function Main() {
   const handleClick = () => setState({ isLoggedIn: !state.isLoggedIn });
   return (
     <div>
-      <h1 onClick={handleClick}>Main Page</h1>
-      <Deck />
+      <h1 onClick={handleClick}></h1>
+      <Deck/>
     </div>
   );
 }

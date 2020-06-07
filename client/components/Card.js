@@ -7,9 +7,8 @@ import Typography from '@material-ui/core/Typography';
 
 export default function Card(props) {
   return (
-    <div style={{ border: 'solid' }}>
-      <img
-        src={
+    <div className="card">
+      <img className="cardPetPic" src={
           'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/01/12201051/cute-puppy-body-image.jpg'
         }
       />
@@ -18,7 +17,7 @@ export default function Card(props) {
         <li className="charDetail">Age</li>
         <li className="charDetail">Location</li>
         <li className="charDetail">Gender</li>
-        <li className="charDetail">Bio</li>
+        {/* <li className="charDetail">Bio</li> */}
       </ul>
     </div>
   );

@@ -1,23 +1,18 @@
 const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    filename: 'bundle.js'
   },
-  plugins: [new HtmlWebpackPlugin()],
   mode: process.env.NODE_ENV,
   devServer: {
     publicPath: '/build',
     proxy: {
       '/api': 'http://localhost:3000'
     },
-    hot: true,
-    contentBase: path.join(__dirname, 'build'),
-    historyApiFallback: true,
+    hot: true
   },
   module: {
     rules: [
@@ -34,14 +29,12 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-				test: /\.(png|svg|jpg|gif)$/,
+				test: /\.(png|svg|gif)$/,
 				use: [ 'file-loader', ],
       },
       {
         test: /\.jpg?/,
-        use: [
-          'file-loader',
-          {
+        use: [ 'file-loader', {
             loader: 'image-webpack-loader',
             options: {
               disable: true,

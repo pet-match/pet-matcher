@@ -5,7 +5,10 @@
 }
 
 body {
-  background-color: rgb(255, 94, 82);
+  background-image: url("/../ws_Green_Garden.jpg");
+  background-size: cover;
+  height: 110vh;
+  /* background-color: rgb(25, 94, 82); */
 }
 
 .signinButton {
@@ -24,6 +27,35 @@ body {
   background-color: rgb(255, 94, 82);
 }
 
+.deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+}
+
+.card {
+  /* background-image: url("/../ws_Green_Garden.jpg"); */
+  background-color: rgb(90.2%, 89.7%, 89.7%);
+  margin: 2em;
+  /* border: 1px solid grey; */
+  border-radius: 2em;
+  height: 26em;
+  padding-bottom: 2em;
+}
+
 .signinButton:hover {
   border: 1px solid rgb(118, 118, 118);
+}
+
+.cardPetPic {
+  margin-top: 2em;
+  /* margin: 2em 0.5em; */
+  /* padding: 1em; */
+  width: 100%;
+  height: auto;
+}
+
+.charDetail {
+  list-style: none;
+  font-family: 'Roboto', sans-serif;
+  
 }
