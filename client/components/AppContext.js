@@ -8,6 +8,7 @@ export const AppProvider = (props) => {
   const [state, setState] = useState({
     users: [],
     isLoggedIn: false,
+    currentUserId: 0,
   });
 
   return (

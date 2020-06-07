@@ -9,7 +9,7 @@ export default function Deck() {
   
   const [prospects, setProspects] = useState([]);
 
-  // TODO: install axios if you don't have it
+  // TODO: install axios globally if don't have it
   // TODO: need to get this user's userId from state, and then pass here + update axios url
   useEffect( () => {
     axios('/api/getProspects/1')
@@ -25,9 +25,9 @@ export default function Deck() {
 
   // TODO: fix sql query to include both owner and pet names
   return ( <div className="deck" onClick={handleClick}>
-             {prospects.map(user => (
+             {prospects.map((user, i )=> (
                 <div key={user.username} className="card">
-                  {/* <img src={user.image} className="cardPetPic" /> */}
+                  <img src={`/client/img/pic${i}.jpg`} className="cardPetPic" />
                   <div className="cardDetails">{user.name}</div>
                 </div>
              ))}
@@ -36,8 +36,6 @@ export default function Deck() {
 }
 
 // username, age, desc, photo
-
-
 
   // if (!cards) return (
   //   <div>
