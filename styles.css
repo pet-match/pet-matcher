@@ -5,10 +5,10 @@
 }
 
 body {
-  background-image: url("/../ws_Green_Garden.jpg");
+  background-image: url("/../client/img/ws_Green_Garden.jpg");
   background-size: cover;
   height: 110vh;
-  /* background-color: rgb(25, 94, 82); */
+  background-color: green;
 }
 
 .signinButton {
@@ -54,7 +54,7 @@ body {
   height: auto;
 }
 
-.charDetail {
+.cardDetails {
   list-style: none;
   font-family: 'Roboto', sans-serif;
   

@@ -13,11 +13,11 @@ export default function Card(props) {
         }
       />
       <ul className="charDetailsList">
-        <li className="charDetail">Screen Name</li>
-        <li className="charDetail">Age</li>
-        <li className="charDetail">Location</li>
-        <li className="charDetail">Gender</li>
-        {/* <li className="charDetail">Bio</li> */}
+        <li className="cardDetails">Screen Name</li>
+        <li className="cardDetails">Age</li>
+        <li className="cardDetails">Location</li>
+        <li className="cardDetails">Gender</li>
+        {/* <li className="cardDetails">Bio</li> */}
       </ul>
     </div>
   );
