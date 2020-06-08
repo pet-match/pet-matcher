@@ -4,16 +4,16 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   mode: process.env.NODE_ENV,
   devServer: {
     publicPath: '/build',
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': 'http://localhost:3000',
     },
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -30,12 +30,14 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-				test: /\.(png|svg|gif)$/,
-				use: [ 'file-loader', ],
+        test: /\.(png|svg|gif)$/,
+        use: ['file-loader'],
       },
       {
         test: /\.jpg?/,
-        use: [ 'file-loader', {
+        use: [
+          'file-loader',
+          {
             loader: 'image-webpack-loader',
             options: {
               disable: true,
@@ -45,4 +47,4 @@ module.exports = {
       },
     ],
   },
-}
+};

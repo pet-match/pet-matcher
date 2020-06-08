@@ -6,9 +6,16 @@ export const AppContext = createContext();
 
 export const AppProvider = (props) => {
   const [state, setState] = useState({
-    users: [],
     isLoggedIn: false,
     currentUserId: 0,
+    prospects: [],
+    signUpFormText: {
+      userName: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    },
   });
 
   return (

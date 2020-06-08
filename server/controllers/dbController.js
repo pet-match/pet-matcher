@@ -7,6 +7,31 @@ const dbController = {};
 //   return next();
 // };
 
+// ==========================
+// CREATE USER
+// ==========================
+dbController.createUser = (req, res, next) => {
+  // console.log('INSIDE CREATE USER CONTROLLER: ');
+  // return next();
+  const { userName, email, password } = req.body;
+  const query = {
+    text: 'INSERT INTO users (username, email, password) VALUES ($1, $2, $3);',
+    values: [userName, email, password],
+  };
+  db.query(query)
+    .then((result) => {
+      console.log('returned from create user; result = ', result);
+      res.locals.newUser = result;
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
+};
+
+// ==========================
+// GET ALL PROPECTS!
+// ==========================
 dbController.getAllAvailableProspects = (req, res, next) => {
   // Get ALL users (who have pets) besides user $1, + their pets
   const text =
