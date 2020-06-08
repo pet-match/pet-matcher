@@ -1,9 +1,10 @@
 import React from 'react';
+import LandingComp from '../components/LandingComp';
 
 export default function Landing() {
   return (
-    <di>
-      <h1>Hello</h1>
-    </di>
+    <div>
+      <LandingComp />
+    </div>
   );
 }
