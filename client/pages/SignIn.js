@@ -55,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  // const [formInput, upDateForm] = useState();
+
   const handleClick = (e) => {
     let getEmail = document.getElementById('password');
     e.preventDefault();
@@ -112,11 +114,9 @@ export default function SignIn() {
                 Forgot password?
               </MaterialLink>
             </Grid>
-            <Grid item> 
-              <MaterialLink 
-                to="/signup"
-                component={Link}
-                variant="body2">{"Don't have an account? Sign Up"}
+            <Grid item>
+              <MaterialLink to="/signup" component={Link} variant="body2">
+                {"Don't have an account? Sign Up"}
               </MaterialLink>
             </Grid>
           </Grid>

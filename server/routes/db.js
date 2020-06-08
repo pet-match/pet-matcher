@@ -9,6 +9,16 @@ const router = express.Router();
 //   return res.status(200).end();
 // });
 
+// =======================
+// CREATE USER
+// =======================
+router.post('/user', dbController.createUser, (req, res) => {
+  // redirect back to our main/root
+  // react router will handle routing based around state
+  // return state or cookie with NEW user_Id
+  return res.sendStatus(200);
+});
+
 router.get(
   '/getProspects/:user_Id',
   dbController.getAllAvailableProspects,
