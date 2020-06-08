@@ -5,13 +5,16 @@ import SignIn from '../pages/SignIn';
 import Landing from '../pages/Landing';
 import Main from '../pages/Main';
 import { AppProvider } from './AppContext';
+import Root from '../pages/Root';
 
 const App = () => {
   return (
     <AppProvider>
       <Switch>
-        <Route exact path={'/main'} render={() => <Main />} />
-        <Route exact path={'/'} render={() => <SignIn />} />
+        <Route exact path="/" component={Root} />
+
+        {/* <Route exact path={'/'} render={() => <SignIn />} /> */}
+        {/* <Route exact path={'/main'} render={() => <Main />} /> */}
         {/* <Route exact path={'/signin'} component={SignIn} /> */}
       </Switch>
     </AppProvider>
