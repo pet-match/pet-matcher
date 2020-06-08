@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../components/AppContext';
 import SignIn from '../pages/SignIn';
 import Main from '../pages/Main';
@@ -11,7 +11,7 @@ export default function Root() {
   return (
     <>
       <h1 onClick={handleClick}>
-        Hello this is root container. Click me to toggle isLoggedIn 'state'
+        Hello this is root container. Click me to toggle isLoggedIn state
       </h1>
       {state.isLoggedIn ? <Main /> : <SignIn />}
     </>
