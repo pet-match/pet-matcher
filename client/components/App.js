@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
+// import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
@@ -10,23 +11,16 @@ import { AppProvider } from './AppContext';
 const App = () => {
   return (
     <AppProvider>
-      <Router>
+      {/* <Router> */}
         <Switch>
           <Route exact path={'/'} render={() => <SignIn />} />
           <Route exact path={'/main'} render={() => <Main />} />
           <Route exact path={'/signup'} render={() => <SignUp />} />
           {/* <Route exact path={'/signin'} component={SignIn} /> */}
         </Switch>
-      </Router>
+      {/* </Router> */}
     </AppProvider>
   );
 };
 
 export default App;
-
-/*
-<Route
-  path='/dashboard'
-  render={(props) => <Dashboard props ={...props} testProp={'hi''} />}
-/>
-*/

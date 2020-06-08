@@ -45,15 +45,12 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    // color: secondary,
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
-const LinkBehavior = React.forwardRef((props, ref) => (
-  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
-));
 
 export default function SignIn() {
   const classes = useStyles();
@@ -117,7 +114,6 @@ export default function SignIn() {
             </Grid>
             <Grid item> 
               <MaterialLink 
-                // className="signup"
                 to="/signup"
                 component={Link}
                 variant="body2">{"Don't have an account? Sign Up"}
@@ -132,14 +128,3 @@ export default function SignIn() {
     </Container>
   );
 }
-
-
-// <Button
-// type="submit"
-// fullWidth
-// variant="contained"
-// color="primary"
-// className={classes.submit}
-// >
-// Sign In
-// </Button>
