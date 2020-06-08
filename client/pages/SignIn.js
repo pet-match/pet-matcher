@@ -45,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    // color: secondary,
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -90,15 +94,17 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
-          <Link
-            className="signinButton"
+          <Button
+            className={classes.submit}
             to="/main"
+            fullWidth
+            component={Link}
             type="submit"
             variant="contained"
             color="primary"
           >
             Sign In
-          </Link>
+          </Button>
           <Grid container>
             <Grid item xs>
               {/* forgot password route */}
@@ -106,10 +112,11 @@ export default function SignIn() {
                 Forgot password?
               </MaterialLink>
             </Grid>
-            <Grid item>
-              {/* link to sign up route */}
-              <MaterialLink href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+            <Grid item> 
+              <MaterialLink 
+                to="/signup"
+                component={Link}
+                variant="body2">{"Don't have an account? Sign Up"}
               </MaterialLink>
             </Grid>
           </Grid>
