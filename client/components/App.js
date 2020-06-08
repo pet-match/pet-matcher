@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-import SignIn from '../pages/SignIn';
-import Landing from '../pages/Landing';
-import Main from '../pages/Main';
 import { AppProvider } from './AppContext';
+
+import Landing from '../pages/Landing';
+import SignIn from '../pages/SignIn';
+import Main from '../pages/Main';
 
 const App = () => {
   return (
     <AppProvider>
       <Switch>
+        <Route exact path={'/'} render={() => <Landing />} />
+        <Route exact path={'/signin'} render={() => <SignIn />} />
         <Route exact path={'/main'} render={() => <Main />} />
-        <Route exact path={'/'} render={() => <SignIn />} />
         {/* <Route exact path={'/signin'} component={SignIn} /> */}
       </Switch>
     </AppProvider>
