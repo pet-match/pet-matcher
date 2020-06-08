@@ -1,0 +1,99 @@
+body {
+  background-color: #000;
+}
+
+h1 {
+  font-size: 4em;
+  text-shadow: 2px 2px 10px black;
+}
+
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 40vh;
+}
+
+#landing-header h1 {
+  color: #fff;
+}
+
+.getStartedButton {
+  color: #efefef;
+  border: 1px solid rgb(195, 195, 195);
+  width: 50%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 3rem;
+  border-radius: 4px;
+  margin-bottom: 5px 0;
+  margin: 5px 0;
+  text-decoration: none;
+  background-color: rgb(255, 94, 82);
+}
+
+.getStartedButton:hover {
+  border: 1px solid rgb(118, 118, 118);
+}
+
+.slideshow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow li {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 50s linear infinite;
+}
+
+.slideshow li:nth-child(1) {
+  background-image: url(https://cdn.hipwallpaper.com/i/37/87/68LFUs.jpg);
+}
+.slideshow li:nth-child(2) {
+  background-image: url(https://lh3.googleusercontent.com/proxy/fJu93UDpjJePqS0LXyeFac4b4Wus8DMOJqHUtose9qf6KwtrKsSyOhRlUzK48nVhGsm5IGTHXfzXUwH01Gip_m2Nz-EwEGQvHoH8nQnenAMlpl3OJ6aLTf-8GiXfqniVp5CvglkRj3dhYOmkfAeIYSrYycGd);
+  animation-delay: 10s;
+}
+.slideshow li:nth-child(3) {
+  background-image: url(https://image.freepik.com/free-photo/cute-pug-puppy-isolated-yellow-background_149482-74.jpg);
+  animation-delay: 20s;
+}
+
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+  opacity: 1;
+}

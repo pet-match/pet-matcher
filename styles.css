@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: url("/../client/img/ws_Green_Garden.jpg");
+  background-image: url('/../client/img/ws_Green_Garden.jpg');
   background-size: cover;
   background-attachment: fixed;
   height: 110vh;
@@ -48,7 +48,8 @@ body {
   height: 1fr;
   /* will-change: transform; */
   border-radius: 10px;
-  box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
+  box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
+    0 10px 10px -10px rgba(50, 50, 73, 0.3);
 }
 
 .signinButton:hover {
@@ -64,11 +65,10 @@ body {
 }
 
 .cardDetails {
-  margin-top: 3px;;
+  margin-top: 3px;
   list-style: none;
   font-family: 'Roboto', sans-serif;
   font-size: larger;
-  
 }
 
 /*
@@ -84,7 +84,7 @@ body {
   .deck {
     grid-template-columns: repeat(1, 1fr);
   }
-/* 
+  /* 
   .charCard .charPhoto {
     justify-content: flex-start;
   } */

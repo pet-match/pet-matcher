@@ -133,7 +133,7 @@ export default function SignUp() {
             <Grid item>
             <MaterialLink 
                 // className="signup"
-                to="/"
+                to="/signin"
                 component={Link}
                 variant="body2">{"Already have an account? Sign in"}
               </MaterialLink>
