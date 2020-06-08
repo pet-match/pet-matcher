@@ -5,9 +5,6 @@ import axios from 'axios';
 
 export default function Deck() {
   const [state, setState] = useContext(AppContext);
-  const handleClick = () =>
-    console.log('Current State isLogged in: ', state.isLoggedIn);
-
   const [prospects, setProspects] = useState([]);
 
   // TODO: install axios globally if don't have it
@@ -30,7 +27,6 @@ export default function Deck() {
         photo={user.user_id}
         details={user.name}
         location={user.location}
-        onClick={handleClick}
       />
     );
   });
