@@ -46,7 +46,14 @@ const useStyles = makeStyles((theme) => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
+
+const LinkBehavior = React.forwardRef((props, ref) => (
+  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
+));
 
 export default function SignIn() {
   const classes = useStyles();
@@ -90,15 +97,17 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
-          <Link
-            className="signinButton"
+          <Button
+            className={classes.submit}
             to="/main"
+            fullWidth
+            component={Link}
             type="submit"
             variant="contained"
             color="primary"
           >
             Sign In
-          </Link>
+          </Button>
           <Grid container>
             <Grid item xs>
               {/* forgot password route */}
@@ -106,10 +115,12 @@ export default function SignIn() {
                 Forgot password?
               </MaterialLink>
             </Grid>
-            <Grid item>
-              {/* link to sign up route */}
-              <MaterialLink href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+            <Grid item> 
+              <MaterialLink 
+                // className="signup"
+                to="/signup"
+                component={Link}
+                variant="body2">{"Don't have an account? Sign Up"}
               </MaterialLink>
             </Grid>
           </Grid>
@@ -121,3 +132,14 @@ export default function SignIn() {
     </Container>
   );
 }
+
+
+// <Button
+// type="submit"
+// fullWidth
+// variant="contained"
+// color="primary"
+// className={classes.submit}
+// >
+// Sign In
+// </Button>
