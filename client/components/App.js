@@ -14,10 +14,11 @@ const App = () => {
   return (
     <>
       <Router basename={'/'}>
-        <Route exact path={'/'}>
+        <Route exact path={'/'} render={() => <Landing />} />
+
+        <Route exact path={'/signin'}>
           {state.isLoggedIn ? <Main /> : <SignIn />}
         </Route>
-        <Route exact path={'/signin'} render={() => <SignIn />} />
         <Route exact path={'/signup'} render={() => <SignUp />} />
         <Route exact path={'/main'} render={() => <Main />} />
       </Router>
