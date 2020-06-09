@@ -59,9 +59,34 @@ export default function SignUp() {
 
   const handleInput = (e) => {
     setState({
+      ...state,
       signUpFormText: {
         ...state.signUpFormText,
         [e.target.id]: e.target.value,
+      },
+    });
+  };
+
+  const clearTextFields = () => {
+    console.log('In clearTextFields');
+    const fNameInputField = document.getElementById('firstName');
+    const lNameInputField = document.getElementById('lastName');
+    const userName = document.getElementById('userName');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    fNameInputField.value = '';
+    lNameInputField.value = '';
+    userName.value = '';
+    email.value = '';
+    password.value = '';
+    setState({
+      ...state,
+      signUpFormText: {
+        userName: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
       },
     });
   };
@@ -74,12 +99,14 @@ export default function SignUp() {
       .post('/api/user', state.signUpFormText)
       .then((response) => {
         console.log('HERES THE RESPONSE FROM THE BACKEND: ', response);
-        // React router redirect needs to happen
-        <Redirect to="/main" />;
-        // once successful, set our signUpFormText to have empty values again
+
+        // If successful, clear signUpFormText
+        clearTextFields();
+        setState({ ...state, currentUserId: response.data.user_id });
       })
       .catch((err) => {
-        console.log('Error inside out AXIOS POST');
+        clearTextFields();
+        alert(err);
       });
   };
 
@@ -157,12 +184,6 @@ export default function SignUp() {
                 onChange={handleInput}
               />
             </Grid>
-            {/* <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid> */}
           </Grid>
           <Button
             type="submit"
