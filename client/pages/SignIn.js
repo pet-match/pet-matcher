@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component, useState, useContext } from 'react';
+import { AppContext } from '../components/AppContext';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,7 +11,9 @@ import PetsIcon from '@material-ui/icons/Pets';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-// import Main from './Main';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 import Styles from '../../styles.css';
 
@@ -54,13 +57,42 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [state, setState] = useContext(AppContext);
 
-  // const [formInput, upDateForm] = useState();
+  // Saves state when on our main page
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setState({ ...state, isLoggedIn: true });
+  };
+
+  const handleInput = (e) => {
+    setState({
+      signUpFormText: {
+        ...state.signUpFormText,
+        [e.target.id]: e.target.value,
+      },
+    });
+  };
 
   const handleClick = (e) => {
-    let getEmail = document.getElementById('password');
+    // prevent POST
     e.preventDefault();
-    console.log(getEmail.value);
+    // Send our state to the backend for signup
+    console.log('handleClick -> state.signUpFormText', state.signUpFormText);
+    axios
+      .post('/api/userVerify', state.signUpFormText)
+      .then((response) => {
+        console.log('RESPONSE TO LOGIN REQUEST: ', response);
+        setState({ ...state, isLoggedIn: true });
+        // React router redirect needs to happen
+        // once successful, set our signUpFormText to have empty values again
+        // <Redirect to="/" />;
+        const history = useHistory();
+        history.push('/main');
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   return (
@@ -84,6 +116,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleInput}
           />
           <TextField
             variant="outlined"
@@ -95,17 +128,26 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleInput}
           />
           <Button
             className={classes.submit}
-            to="/main"
             fullWidth
-            component={Link}
+            // component={Link}
             type="submit"
             variant="contained"
             color="primary"
+            onClick={handleClick}
           >
             Sign In
+          </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={handleLogin}
+          >
+            Verify Login
           </Button>
           <Grid container>
             <Grid item xs>
