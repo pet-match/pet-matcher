@@ -13,7 +13,6 @@ import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-
 import { Link } from 'react-router-dom';
 import Styles from '../../styles.css';
 
@@ -95,6 +94,7 @@ export default function SignIn() {
       });
   };
 
+  // OUR SIGNIN FOR WITH TEXT INPUT FIELDS
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -157,6 +157,7 @@ export default function SignIn() {
               </MaterialLink>
             </Grid>
             <Grid item>
+              {/* OUR Signup Link */}
               <MaterialLink to="/signup" component={Link} variant="body2">
                 {"Don't have an account? Sign Up"}
               </MaterialLink>
@@ -164,6 +165,7 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
+      {/* Copyright component */}
       <Box mt={8}>
         <Copyright />
       </Box>
