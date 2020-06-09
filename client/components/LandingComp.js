@@ -11,7 +11,8 @@ const LandingComp = () => {
           Get Started
         </Link>
       </div>
-
+      {/* UL That displays our transitioning photos from landinStyles.css */}
+      {/* Each LI corresponds to a photo with specific keyframe transitions */}
       <ul className="slideshow">
         <li></li>
         <li></li>

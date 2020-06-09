@@ -8,7 +8,7 @@ const router = express.Router();
 // CREATE USER
 // =======================
 router.post('/user', dbController.createUser, (req, res) => {
-  // redirect back to our main/root
+  // TODOS
   // react router will handle routing based around state
   // return state or cookie with NEW user_Id
   return res.status(200).json(res.locals);
@@ -53,8 +53,10 @@ router.get(
   '/getMutualLikes/:user_Id',
   dbController.getMatchingLikes,
   (req, res) => {
+    // dbController.getMatchingLikes middleware NOT functional yet
     return res.status(200).json(res.locals.getMatchingLikes);
   }
 );
 
 module.exports = router;
+T;
