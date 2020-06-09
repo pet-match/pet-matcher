@@ -6,14 +6,19 @@ import axios from 'axios';
 export default function Deck() {
   const [state, setState] = useContext(AppContext);
 
-  // TODO: need to get this user's userId from state, and then pass here + update axios url
-  // need to store user after login to our axios req
   useEffect(() => {
-    axios('/api/getProspects/1').then((prospects) => {
+    axios(`/api/getProspects/1`).then((prospects) => {
       console.log('Deck -> prospects.data', prospects.data);
-      setState({ prospects: prospects.data });
+      setState({ ...state, prospects: prospects.data });
     });
   }, []);
+
+  // useEffect(() => {
+  //   axios(`/api/getProspects/${state.currentUserId}`).then((prospects) => {
+  //     console.log('Deck -> prospects.data', prospects.data);
+  //     setState({ ...state, prospects: prospects.data });
+  //   });
+  // }, []);
 
   const cards = [];
   state.prospects.map((user, i) => {

@@ -2,11 +2,6 @@
 const db = require('../models/dbPool.js');
 const dbController = {};
 
-// dbController.verifyLogin = (req, res, next) => {
-//   console.log('login function here');
-//   return next();
-// };
-
 // ==========================
 // CREATE USER
 // ==========================
@@ -15,14 +10,50 @@ dbController.createUser = (req, res, next) => {
   // return next();
   const { userName, email, password } = req.body;
   const query = {
-    text: 'INSERT INTO users (username, email, password) VALUES ($1, $2, $3);',
+    text:
+      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING user_id;',
     values: [userName, email, password],
   };
   db.query(query)
     .then((result) => {
       console.log('returned from create user; result = ', result);
-      res.locals.newUser = result;
+      res.locals = result.rows[0];
       return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
+};
+
+// ==========================
+// VERIFY USER!
+// ==========================
+dbController.verifyUser = (req, res, next) => {
+  const { email, password } = req.body;
+  console.log('dbController.verifyUser -> req.body', req.body);
+  console.log('dbController.verifyUser -> userName', email);
+  console.log('dbController.verifyUser -> password', password);
+
+  const query = {
+    text: 'SELECT * FROM users WHERE email = $1;',
+    values: [email],
+  };
+
+  db.query(query)
+    .then((result) => {
+      console.log('Results from DB VerifyUser', result.rows);
+
+      if (result) {
+        if (result.rows[0].password === password) {
+          console.log('A MATCH!!');
+          return next();
+        } else {
+          return res.status(401).send('Password incorrect');
+        }
+      }
+      if (!result) {
+        return res.status(401).send('Invalid User');
+      }
     })
     .catch((err) => {
       return next(err);
@@ -40,7 +71,7 @@ dbController.getAllAvailableProspects = (req, res, next) => {
   //  console.log('does this contain anything---->',req.params)
   db.query(text, values)
     .then((result) => {
-      console.log('Got results from database:', result.rows);
+      // console.log('Got results from database:', result.rows);
       res.locals.getProspects = result.rows;
       return next();
     })
