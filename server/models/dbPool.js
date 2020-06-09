@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // connect to postgres here using .env files. Please see readme.md for more details
 const PG_URI = `postgres://${process.env.PG_USER}:${process.env.PG_PW}<pasteElephantUriHere>`;
-
+//
 const pool = new Pool({
   connectionString: PG_URI,
 });
@@ -14,3 +14,4 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 };
+//
