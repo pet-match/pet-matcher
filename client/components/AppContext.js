@@ -1,10 +1,13 @@
 import React, { useState, createContext } from 'react';
 
 // creates a global context for the entire app with state and setState.
-
 export const AppContext = createContext();
 
+// create our provider for state to be passed down on children components
 export const AppProvider = (props) => {
+  // this is initial state
+  // there are some more secondary useState hooks inside Card.js but it MAY be best practice to put everything
+  // in here as a single source of truth??
   const [state, setState] = useState({
     isLoggedIn: false,
     currentUserId: 0,
@@ -26,5 +29,3 @@ export const AppProvider = (props) => {
     </AppContext.Provider>
   );
 };
-
-// state: {users:[], isLoggedIn: boolean}

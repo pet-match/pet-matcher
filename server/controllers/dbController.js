@@ -2,12 +2,10 @@
 const db = require('../models/dbPool.js');
 const dbController = {};
 
-// ==========================
-// CREATE USER
-// ==========================
+// ==============================================================================
+// CREATE USER - create new use and return new user's user_id
+// ==============================================================================
 dbController.createUser = (req, res, next) => {
-  // console.log('INSIDE CREATE USER CONTROLLER: ');
-  // return next();
   const { userName, email, password } = req.body;
   const query = {
     text:
@@ -16,7 +14,6 @@ dbController.createUser = (req, res, next) => {
   };
   db.query(query)
     .then((result) => {
-      console.log('returned from create user; result = ', result);
       res.locals = result.rows[0];
       return next();
     })
@@ -25,14 +22,12 @@ dbController.createUser = (req, res, next) => {
     });
 };
 
-// ==========================
-// VERIFY USER!
-// ==========================
+// ==============================================================================
+// VERIFY USER - see if user's email exists, and compare against password.
+//    return next if matched
+// ==============================================================================
 dbController.verifyUser = (req, res, next) => {
   const { email, password } = req.body;
-  console.log('dbController.verifyUser -> req.body', req.body);
-  console.log('dbController.verifyUser -> userName', email);
-  console.log('dbController.verifyUser -> password', password);
 
   const query = {
     text: 'SELECT * FROM users WHERE email = $1;',
@@ -41,9 +36,9 @@ dbController.verifyUser = (req, res, next) => {
 
   db.query(query)
     .then((result) => {
-      console.log('Results from DB VerifyUser', result.rows);
-
+      // if user's email exists
       if (result) {
+        // see if password matches
         if (result.rows[0].password === password) {
           console.log('A MATCH!!');
           return next();
@@ -60,18 +55,16 @@ dbController.verifyUser = (req, res, next) => {
     });
 };
 
-// ==========================
-// GET ALL PROPECTS!
-// ==========================
+// ==============================================================================
+// GET ALL PROPECTS - takes current user's id and returns all users and
+//    their pets who are not current user
+// ==============================================================================
 dbController.getAllAvailableProspects = (req, res, next) => {
-  // Get ALL users (who have pets) besides user $1, + their pets
   const text =
     'SELECT * FROM users INNER JOIN pets ON user_id = owner_id WHERE user_id != $1;';
   const values = [req.params.user_Id];
-  //  console.log('does this contain anything---->',req.params)
   db.query(text, values)
     .then((result) => {
-      // console.log('Got results from database:', result.rows);
       res.locals.getProspects = result.rows;
       return next();
     })
@@ -81,17 +74,15 @@ dbController.getAllAvailableProspects = (req, res, next) => {
     });
 };
 
-// ==========================
-// GET ALL OF A USER'S PETS
-// ==========================
-
+// ==============================================================================
+// GET ALL OF A USER'S PETS - not tested, and not used in front-end as of 6/8
+// ==============================================================================
 dbController.getUsersPets = (req, res, next) => {
   const text =
     'SELECT users.*, pets.name AS pet FROM users JOIN pets ON user_id = owner_id WHERE user_id = $1;';
   const values = [req.params.user_Id];
   db.query(text, values)
     .then((result) => {
-      console.log('Got Users Pets fromDB: ', result.rows);
       res.locals.getUsersPets = result.rows;
       return next();
     })
@@ -101,16 +92,15 @@ dbController.getUsersPets = (req, res, next) => {
     });
 };
 
-// ============================
-// GETS LIKES OF GIVEN USER
-// ============================
+// ==============================================================================
+// GETS LIKES OF GIVEN USER - not tested, and not used in front-end as of 6/8
+// ==============================================================================
 dbController.getUserLikes = (req, res, next) => {
   const text =
     'SELECT * FROM users JOIN likes ON user_id = liker_id WHERE user_id = $1;';
   const values = [req.params.user_Id];
   db.query(text, values)
     .then((result) => {
-      console.log('Got User Likes From DB: ', result.rows);
       res.locals.getUserLikes = result.rows;
       return next();
     })
@@ -119,13 +109,14 @@ dbController.getUserLikes = (req, res, next) => {
       return next(err);
     });
 };
-
+// ==============================================================================
+// GET MATCHING LIKES - not tested, and not used in front-end as of 6/8
+// ==============================================================================
 dbController.getMatchingLikes = (req, res, next) => {
   const text = '';
   const values = [req.params.user_Id];
   db.query(text, values)
     .then((result) => {
-      console.log('GOT Mathcing Likes from DB: ', result.rows);
       res.locals.matchingLikes = result.rows;
       return next();
     })
@@ -136,8 +127,3 @@ dbController.getMatchingLikes = (req, res, next) => {
 };
 
 module.exports = dbController;
-
-// {
-//   log: `error in getAllAvailableMatches: ${err}`,
-//   message: { err: 'Unknown database error'},
-// }

@@ -56,7 +56,7 @@ export default function SignUp() {
   const classes = useStyles();
   // for state management
   const [state, setState] = useContext(AppContext);
-
+  // Dynamically add to our state based on input values entered into TextFields
   const handleInput = (e) => {
     setState({
       ...state,
@@ -68,12 +68,13 @@ export default function SignUp() {
   };
 
   const clearTextFields = () => {
-    console.log('In clearTextFields');
+    // TARGET all of our input fields from our form
     const fNameInputField = document.getElementById('firstName');
     const lNameInputField = document.getElementById('lastName');
     const userName = document.getElementById('userName');
     const email = document.getElementById('email');
     const password = document.getElementById('password');
+    // ASSIGN the values of our input fields to be empty
     fNameInputField.value = '';
     lNameInputField.value = '';
     userName.value = '';
@@ -98,8 +99,6 @@ export default function SignUp() {
     axios
       .post('/api/user', state.signUpFormText)
       .then((response) => {
-        console.log('HERES THE RESPONSE FROM THE BACKEND: ', response);
-
         // If successful, clear signUpFormText
         clearTextFields();
         setState({ ...state, currentUserId: response.data.user_id });
@@ -110,6 +109,9 @@ export default function SignUp() {
       });
   };
 
+  //=====================================
+  // SIGN UP FORM - NOT USED IN DEMO
+  //=====================================
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -197,12 +199,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <MaterialLink
-                // className="signup"
-                to="/signin"
-                component={Link}
-                variant="body2"
-              >
+              <MaterialLink to="/signin" component={Link} variant="body2">
                 {'Already have an account? Sign in'}
               </MaterialLink>
             </Grid>

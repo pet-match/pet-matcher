@@ -16,7 +16,6 @@ export default function BackCard(props) {
   // set state for flipping our cards
   const [isFlipped, setIsFlipped] = useState(false);
   // create handle click and map to our button on card component
-  // const handleClick = () => setIsFlipped(!isFlipped);
   return (
     // set our flip status to be false, initially, flip dir is horizontal
     <div onClick={props.handleClick}>
